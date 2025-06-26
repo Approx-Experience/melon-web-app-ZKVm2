@@ -1,10 +1,13 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+import MelonNavbar from './components/Navbar.jsx'
+import { Outlet } from 'react-router-dom'
 
 const Root = () => {
   return (
+    <>
+      <MelonNavbar />
       <Outlet />
-  );
-};
+    </>
+  )
+}
 
-export default Root;
+export default Root
