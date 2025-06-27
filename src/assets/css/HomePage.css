@@ -1,0 +1,9 @@
+.homepage-sections-mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.homepage-sections-desktop {
+  display: block;
+}
