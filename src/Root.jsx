@@ -1,4 +1,4 @@
-import MelonNavbar from './components/Navbar.jsx'
+import MelonNavbar from './components/DesktopNavbar.jsx'
 import MobileNavigationBar from './components/MobileNavigationBar'
 import { Outlet } from 'react-router-dom'
 
