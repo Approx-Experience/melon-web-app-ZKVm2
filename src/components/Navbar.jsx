@@ -82,6 +82,7 @@ const ThemeToggle = () => {
 
 const MelonNavbar = () => (
   <nav
+    className='desktop-navbar'
     style={{
       background: '#FFECDA',
       fontFamily: 'Montserrat, sans-serif',
@@ -104,7 +105,7 @@ const MelonNavbar = () => (
           <a
             href='/'
             className='d-flex align-items-center text-decoration-none'
-            style={{ minWidth: 160 }}
+            style={{ minWidth: 370 }}
           >
             <span
               className='fw-bold'
@@ -127,11 +128,7 @@ const MelonNavbar = () => (
           {/* Пошук по центру (absolute) */}
           <div
             style={{
-              position: 'absolute',
-              left: '50%',
-              top: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: 420,
+              width: 370,
               maxWidth: '90%'
             }}
           >
@@ -162,8 +159,8 @@ const MelonNavbar = () => (
               <input
                 type='text'
                 placeholder='Find your next fit'
-                disabled
-                className='form-control form-control-lg ps-5 bg-transparent border-dark rounded'
+                
+                className='form-control form-control-lg ps-5 bg-transparent border-dark rounded no-focus'
                 style={{ height: 44, fontSize: 17, fontWeight: 500 }}
               />
             </div>
