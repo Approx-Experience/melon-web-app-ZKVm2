@@ -1,0 +1,99 @@
+.desktop-banner {
+  /* margin: 48px auto 0 auto; */
+  background-color: #E9F0EA;
+}
+
+.desktop-banner-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 96px 48px;
+  min-height: 320px;
+  position: relative;
+
+}
+
+.desktop-banner-content {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 2;
+}
+
+.desktop-banner-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.desktop-banner-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.7rem;
+  font-weight: 800;
+  color: #000;
+  margin-bottom: 1.2rem;
+  text-align: left;
+  letter-spacing: 0.01em;
+}
+
+.desktop-banner-desc {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  color: #222;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.desktop-banner-btn {
+  background: #36e15c;
+  color: #000;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 0.9rem 2.4rem;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  box-shadow: none;
+  transition: background 0.2s;
+  margin-bottom: 0.5rem;
+  text-transform: none;
+}
+
+.desktop-banner-btn:hover {
+  background: #2cc94f;
+}
+
+.desktop-banner-img {
+  flex: 0 0 260px;
+  width: 360px;
+  height: 360px;
+  object-fit: cover;
+  border-radius: 0;
+  margin-left: 48px;
+  box-shadow: none;
+}
+
+@media (max-width: 1200px) {
+  .desktop-banner {
+    max-width: 98vw;
+    padding: 32px 12px;
+  }
+  .desktop-banner-img {
+    margin-left: 24px;
+    width: 200px;
+    height: 200px;
+  }
+}

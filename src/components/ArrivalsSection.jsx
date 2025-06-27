@@ -3,43 +3,47 @@ import { Container, Row, Col } from 'react-bootstrap'
 const arrivals = [
   { label: 'shirts', img: '/public/shirts.png', link: '#' },
   { label: 'shorts', img: '/public/shorts.png', link: '#' },
-  { label: 'hats', img: '/public/hats.png', link: '#' },
-  { label: 'athleisure', img: '/public/athleisure.png', link: '#' }
+  { label: 'athleisure', img: '/public/athleisure.png', link: '#' },
+  { label: 'hats', img: '/public/hats.png', link: '#' }
 ]
 
 const ArrivalsSection = () => (
-  <section className='py-3 px-2' style={{ maxWidth: 1100, margin: '0 auto' }}>
+  <section
+    className='py-3 px-2 mx-auto'
+    style={{ maxWidth: 1100, marginTop: 48, marginBottom: 48 }}
+  >
     <h2
-      className='text-center fw-bold'
+      className='text-center fw-bold mb-3'
       style={{
         fontSize: 33.6,
         fontFamily: 'Montserrat, sans-serif',
         color: '#000',
-        marginBottom: 19.2
+        fontWeight: 800
       }}
     >
       new arrivals
     </h2>
     <div
-      className='text-center'
+      className='text-center mb-4'
       style={{
         fontSize: 19.2,
         color: '#000',
         fontFamily: 'Montserrat, sans-serif',
-        marginBottom: 38.4
+        fontWeight: 500
       }}
     >
       fresh threads for your sports to use
     </div>
-    <Container fluid className='d-flex justify-content-between'>
+    {/* Desktop layout */}
+    <Container fluid className='d-none d-lg-flex justify-content-between p-0'>
       <Row
-        className='g-0 w-100 justify-content-center'
+        className='g-0 w-100 justify-content-center align-items-stretch'
         style={{ height: 400.8 }}
       >
         <Col className='col-auto me-3 p-0'>
           <a
             href={arrivals[0].link}
-            className='d-block'
+            className='d-block position-relative'
             style={{ width: 336, height: 400.8 }}
           >
             <img
@@ -49,15 +53,26 @@ const ArrivalsSection = () => (
                 width: 336,
                 height: 400.8,
                 objectFit: 'cover',
-                borderRadius: 0
+                borderRadius: 0,
+                display: 'block'
               }}
             />
+            {/* <div
+              className='position-absolute bottom-0 start-0 m-2 px-3 py-1 bg-light fw-bold'
+              style={{
+                fontFamily: 'Montserrat, sans-serif',
+                fontSize: 16,
+                color: '#000'
+              }}
+            >
+              {arrivals[0].label}
+            </div> */}
           </a>
         </Col>
         <Col className='col-auto me-3 p-0'>
           <a
             href={arrivals[1].link}
-            className='d-block'
+            className='d-block position-relative'
             style={{ width: 249.6, height: 400.8 }}
           >
             <img
@@ -67,9 +82,20 @@ const ArrivalsSection = () => (
                 width: 249.6,
                 height: 400.8,
                 objectFit: 'cover',
-                borderRadius: 0
+                borderRadius: 0,
+                display: 'block'
               }}
             />
+            {/* <div
+              className='position-absolute bottom-0 start-0 m-2 px-3 py-1 bg-light fw-bold'
+              style={{
+                fontFamily: 'Montserrat, sans-serif',
+                fontSize: 16,
+                color: '#000'
+              }}
+            >
+              {arrivals[1].label}
+            </div> */}
           </a>
         </Col>
         <Col
@@ -77,24 +103,8 @@ const ArrivalsSection = () => (
           style={{ width: 249.6 }}
         >
           <a
-            href={arrivals[2].link}
-            className='d-block mb-3'
-            style={{ width: 249.6, height: 187.2 }}
-          >
-            <img
-              src={arrivals[2].img}
-              alt={arrivals[2].label}
-              style={{
-                width: 249.6,
-                height: 187.2,
-                objectFit: 'cover',
-                borderRadius: 0
-              }}
-            />
-          </a>
-          <a
             href={arrivals[3].link}
-            className='d-block'
+            className='d-block mb-3 position-relative'
             style={{ width: 249.6, height: 187.2 }}
           >
             <img
@@ -104,11 +114,76 @@ const ArrivalsSection = () => (
                 width: 249.6,
                 height: 187.2,
                 objectFit: 'cover',
-                borderRadius: 0
+                borderRadius: 0,
+                display: 'block'
               }}
             />
+            {/* <div
+              className='position-absolute bottom-0 start-0 m-2 px-3 py-1 bg-light fw-bold'
+              style={{
+                fontFamily: 'Montserrat, sans-serif',
+                fontSize: 16,
+                color: '#000'
+              }}
+            >
+              {arrivals[3].label}
+            </div> */}
+          </a>
+          <a
+            href={arrivals[2].link}
+            className='d-block position-relative'
+            style={{ width: 249.6, height: 187.2 }}
+          >
+            <img
+              src={arrivals[2].img}
+              alt={arrivals[2].label}
+              style={{
+                width: 249.6,
+                height: 187.2,
+                objectFit: 'cover',
+                borderRadius: 0,
+                display: 'block'
+              }}
+            />
+            {/* <div
+              className='position-absolute bottom-0 start-0 m-2 px-3 py-1 bg-light fw-bold'
+              style={{
+                fontFamily: 'Montserrat, sans-serif',
+                fontSize: 16,
+                color: '#000'
+              }}
+            >
+              {arrivals[2].label}
+            </div> */}
           </a>
         </Col>
+      </Row>
+    </Container>
+    {/* Mobile layout */}
+    <Container fluid className='d-lg-none'>
+      <Row className='gy-3'>
+        {arrivals.map((item) => (
+          <Col xs={12} key={item.label} className='d-flex flex-column'>
+            <a href={item.link} className='d-block w-100 position-relative'>
+              <img
+                src={item.img}
+                alt={item.label}
+                className='img-fluid w-100'
+                style={{ objectFit: 'cover', display: 'block' }}
+              />
+              {/* <div
+                className='position-absolute bottom-0 start-0 m-2 px-3 py-1 bg-light fw-bold'
+                style={{
+                  fontFamily: 'Montserrat, sans-serif',
+                  fontSize: 16,
+                  color: '#000'
+                }}
+              >
+                {item.label}
+              </div> */}
+            </a>
+          </Col>
+        ))}
       </Row>
     </Container>
   </section>
