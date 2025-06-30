@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+.all-products-bg {
+  background: #faf9f8;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  color: #000;
+}
+
+.all-products-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.all-products-nav {
+  min-width: 180px;
+  max-width: 220px;
+  background: none;
+  margin-right: 48px;
+  padding-top: 48px;
+  font-size: 14px;
+}
+
+.nav-section {
+  margin-bottom: 32px;
+}
+
+.nav-title {
+  font-weight: 700;
+  font-size: 13px;
+  margin-bottom: 8px;
+  text-transform: lowercase;
+  color: #000;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-link {
+  font-weight: 500;
+  color: #000;
+  background: none;
+  border: none;
+  padding: 4px 0;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: #e13636;
+}
+
+.all-products-main {
+  flex: 1;
+  padding-top: 48px;
+}
+
+.all-products-heading {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  color: #000;
+  margin-bottom: 4px;
+  text-align: left;
+}
+
+.all-products-subheading {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #000;
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.melon-product-cards-container {
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 48px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 24px;
+}
+
+@media (max-width: 1050px) {
+  .all-products-container {
+    flex-direction: column;
+    padding: 0 8px;
+  }
+  .all-products-nav {
+    flex-direction: row;
+    min-width: 100%;
+    max-width: 100%;
+    margin-right: 0;
+    padding-top: 24px;
+    display: flex;
+    gap: 32px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 24px;
+  }
+  .all-products-main {
+    padding-top: 24px;
+  }
+  .melon-product-cards-container {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+@media (max-width: 700px) {
+  .all-products-heading,
+  .all-products-subheading {
+    text-align: left;
+    font-size: 1.1rem;
+  }
+  .all-products-nav {
+    font-size: 13px;
+    gap: 18px;
+  }
+}
