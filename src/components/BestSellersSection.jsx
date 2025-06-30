@@ -1,14 +1,7 @@
 import { Row, Col } from 'react-bootstrap'
 import ProductCard from './ProductCard'
+import products from '../../scripts/data/products.json'
 
-const products = Array.from({ length: 8 }).map((_, i) => ({
-  id: i + 1,
-  title: 'product title',
-  price: '$19.00',
-  styles: `${2 + (i % 3)} styles`,
-  image: '/public/shorts.png',
-  isNew: i % 3 === 0
-}))
 
 const BestSellersSection = () => {
   return (
