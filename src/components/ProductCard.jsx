@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 
 const ProductCard = ({ product }) => {
-  const { image, title, price, isNew } = product
+  const { image, title, price, isNew, colors } = product
   const dispatch = useDispatch()
   const [added, setAdded] = useState(false)
 
@@ -40,7 +40,7 @@ const ProductCard = ({ product }) => {
         <Card.Body className='melon-product-body'>
           <Card.Title className='melon-product-title'>{title}</Card.Title>
           <div className='melon-product-price'>${price}</div>
-          <div className='melon-product-link'>3 colors/styles</div>
+          <div className='melon-product-link'>{colors.length} colors/styles</div>
           {isNew && (
             <span
               className='badge rounded-0 mt-2'
