@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import ProductCard from '../components/ProductCard'
 import products from '../../scripts/data/products.json'
 import '../assets/css/AllProducts.css'
+import SortDropdown from '../components/SortDropdown'
 
 const navCategories = [
   { label: 'shirts' },
@@ -146,83 +147,37 @@ const AllProducts = () => {
               )}
             </>
           )}
-          <div style={{textAlign: 'start', fontWeight: 800}}>Search result</div>
+          <div style={{ textAlign: 'start', fontWeight: 800 }}>
+            Search result
+          </div>
           <div
             style={{
               display: 'flex',
               gap: 24,
               marginBottom: 32,
-              alignItems: 'center'
+              marginTop: '20px',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              justifyContent:'flex-start' ,
+              width: '100%'
             }}
           >
-            <select
+            <SortDropdown
               value={sort}
-              onChange={(e) => setSort(e.target.value)}
-              style={{
-                height: 40,
-                border: 'none',
-                background: 'transparent',
-                fontFamily: 'Montserrat, sans-serif',
-                fontSize: 14,
-                color: '#000',
-                fontWeight: 500,
-                padding: '0 16px',
-                borderRadius: 0,
-                minWidth: 120,
-                paddingRight: '10px'
-
-              }}
-            >
-              {sortOptions.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.label}
-                </option>
-              ))}
-            </select>
-            <select
+              onChange={setSort}
+              options={sortOptions.slice(1)}
+            />
+            <SortDropdown
               value={size}
-              onChange={(e) => setSize(e.target.value)}
-              style={{
-                height: 40,
-                border: 'none',
-                background: 'transparent',
-                fontFamily: 'Montserrat, sans-serif',
-                fontSize: 14,
-                color: '#000',
-                fontWeight: 500,
-                padding: '0 16px',
-                borderRadius: 0,
-                minWidth: 90
-              }}
-            >
-              {sizeOptions.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.label}
-                </option>
-              ))}
-            </select>
-            <select
+              onChange={setSize}
+              options={sizeOptions.slice(1)} 
+            />
+            <SortDropdown
               value={color}
-              onChange={(e) => setColor(e.target.value)}
-              style={{
-                height: 40,
-                border: 'none',
-                background: 'transparent',
-                fontFamily: 'Montserrat, sans-serif',
-                fontSize: 14,
-                color: '#000',
-                fontWeight: 500,
-                padding: '0 16px',
-                borderRadius: 0,
-                minWidth: 100
-              }}
-            >
-              {colorOptions.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.label}
-                </option>
-              ))}
-            </select>
+              onChange={setColor}
+              options={colorOptions.slice(1)} 
+            />
+            
           </div>
           <h1 className='all-products-heading'>
             the hottest threads for staying cool
