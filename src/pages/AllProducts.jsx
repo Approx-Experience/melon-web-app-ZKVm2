@@ -17,15 +17,50 @@ const shopBy = [
   { label: 'sale' }
 ]
 
+const sortOptions = [
+  { value: '', label: 'Sort by' },
+  { value: 'price-asc', label: 'Price: Low to High' },
+  { value: 'price-desc', label: 'Price: High to Low' },
+  { value: 'newest', label: 'Newest' }
+]
+const sizeOptions = [
+  { value: '', label: 'Size' },
+  { value: 'XS', label: 'XS' },
+  { value: 'S', label: 'S' },
+  { value: 'M', label: 'M' },
+  { value: 'L', label: 'L' },
+  { value: 'XL', label: 'XL' }
+]
+const colorOptions = [
+  { value: '', label: 'Color' },
+  { value: 'navy', label: 'Navy' },
+  { value: 'red', label: 'Red' },
+  { value: 'beige', label: 'Beige' }
+]
+
 const AllProducts = () => {
   const [showFilters, setShowFilters] = useState(false)
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 900)
+  const [sort, setSort] = useState('')
+  const [size, setSize] = useState('')
+  const [color, setColor] = useState('')
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 900)
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
+
+  let filteredProducts = products
+  if (size) filteredProducts = filteredProducts.filter((p) => p.size === size)
+  if (color)
+    filteredProducts = filteredProducts.filter((p) => p.color === color)
+  if (sort === 'price-asc')
+    filteredProducts = [...filteredProducts].sort((a, b) => a.price - b.price)
+  if (sort === 'price-desc')
+    filteredProducts = [...filteredProducts].sort((a, b) => b.price - a.price)
+  if (sort === 'newest')
+    filteredProducts = [...filteredProducts].sort((a, b) => b.id - a.id)
 
   return (
     <div className='all-products-bg'>
@@ -111,6 +146,84 @@ const AllProducts = () => {
               )}
             </>
           )}
+          <div style={{textAlign: 'start', fontWeight: 800}}>Search result</div>
+          <div
+            style={{
+              display: 'flex',
+              gap: 24,
+              marginBottom: 32,
+              alignItems: 'center'
+            }}
+          >
+            <select
+              value={sort}
+              onChange={(e) => setSort(e.target.value)}
+              style={{
+                height: 40,
+                border: 'none',
+                background: 'transparent',
+                fontFamily: 'Montserrat, sans-serif',
+                fontSize: 14,
+                color: '#000',
+                fontWeight: 500,
+                padding: '0 16px',
+                borderRadius: 0,
+                minWidth: 120,
+                paddingRight: '10px'
+
+              }}
+            >
+              {sortOptions.map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
+                </option>
+              ))}
+            </select>
+            <select
+              value={size}
+              onChange={(e) => setSize(e.target.value)}
+              style={{
+                height: 40,
+                border: 'none',
+                background: 'transparent',
+                fontFamily: 'Montserrat, sans-serif',
+                fontSize: 14,
+                color: '#000',
+                fontWeight: 500,
+                padding: '0 16px',
+                borderRadius: 0,
+                minWidth: 90
+              }}
+            >
+              {sizeOptions.map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
+                </option>
+              ))}
+            </select>
+            <select
+              value={color}
+              onChange={(e) => setColor(e.target.value)}
+              style={{
+                height: 40,
+                border: 'none',
+                background: 'transparent',
+                fontFamily: 'Montserrat, sans-serif',
+                fontSize: 14,
+                color: '#000',
+                fontWeight: 500,
+                padding: '0 16px',
+                borderRadius: 0,
+                minWidth: 100
+              }}
+            >
+              {colorOptions.map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
+                </option>
+              ))}
+            </select>
+          </div>
           <h1 className='all-products-heading'>
             the hottest threads for staying cool
           </h1>
@@ -118,7 +231,7 @@ const AllProducts = () => {
             these things are sellin like hotcakes
           </div>
           <div className='melon-product-cards-container'>
-            {products.map((product, idx) => (
+            {filteredProducts.map((product, idx) => (
               <ProductCard key={product.title + idx} product={product} />
             ))}
           </div>
