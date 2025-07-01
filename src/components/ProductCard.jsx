@@ -4,12 +4,12 @@ import '../assets/css/ProductCard.css'
 import { Link } from 'react-router-dom'
 
 const ProductCard = ({ product }) => {
-  const { id, image, title, price, isNew } = product
+  const { image, title, price, isNew, id } = product
   console.log(product)
 
   return (
     <Link
-      to={`/product/${id}`}
+      to={`/browse/${id}`}
       style={{
         textDecoration: 'none',
         color: 'inherit',
