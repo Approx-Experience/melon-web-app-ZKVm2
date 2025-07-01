@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import '../assets/css/MobileNavigationBar.css'
+import { useNavigate } from 'react-router-dom'
 
 const navLinks = [
   'new arrivals',
@@ -13,6 +14,7 @@ const navLinks = [
 const MobileNavigationBar = () => {
   const [openMenu, setOpenMenu] = useState(false)
   const [openSearch, setOpenSearch] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     console.log(openSearch)
@@ -40,7 +42,7 @@ const MobileNavigationBar = () => {
             <img src='/public/search.svg' alt='search' />
           </label>
 
-          <button className='icon-btn'>
+          <button className='icon-btn' onClick={() => navigate('/sign-up')}>
             <img src='/public/account.svg' alt='account' />
           </button>
 

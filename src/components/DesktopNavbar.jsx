@@ -1,6 +1,7 @@
 import { Container } from 'react-bootstrap'
 import { useState } from 'react'
 import { FaSun, FaMoon } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 const navLinks = [
   { label: 'new arrivals', href: '#' },
@@ -159,7 +160,6 @@ const MelonNavbar = () => (
               <input
                 type='text'
                 placeholder='Find your next fit'
-                
                 className='form-control form-control-lg ps-5 bg-transparent border-dark rounded no-focus'
                 style={{ height: 44, fontSize: 17, fontWeight: 500 }}
               />
@@ -171,13 +171,28 @@ const MelonNavbar = () => (
             style={{ minWidth: 340, gap: 24 }}
           >
             <div className='d-flex align-items-center' style={{ gap: 18 }}>
-              <img src='/public/account.svg' alt='Account' style={iconStyle} />
-              <span
-                className='fw-bold text-dark'
-                style={{ fontSize: 16, marginRight: 12 }}
+              <Link
+                to='/sign-up'
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  textDecoration: 'none',
+                  color: 'inherit',
+                  gap: 4
+                }}
               >
-                account
-              </span>
+                <img
+                  src='/public/account.svg'
+                  alt='Account'
+                  style={iconStyle}
+                />
+                <span
+                  className='fw-bold text-dark'
+                  style={{ fontSize: 16, marginRight: 12 }}
+                >
+                  account
+                </span>
+              </Link>
               <img
                 src='/public/favorite.svg'
                 alt='Favorites'
