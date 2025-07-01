@@ -9,6 +9,7 @@ import './App.css'
 import HomePage from './pages/HomePage.jsx'
 import AllProducts from './pages/AllProducts.jsx'
 import ProductPage from './pages/ProductPage.jsx'
+import SignUp from './pages/SignUp.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
       <Route index element={<HomePage />} />
       <Route path='browse' element={<AllProducts />} />
       <Route path='browse/:id' element={<ProductPage />} />
+      <Route path='sign-up' element={<SignUp />} />
     </Route>
   )
 )
