@@ -4,12 +4,11 @@ import '../assets/css/ProductCard.css'
 import { Link } from 'react-router-dom'
 
 const ProductCard = ({ product }) => {
-  const { image, title, price, isNew, id } = product
-  console.log(product)
+  const { image, title, price, isNew, } = product
 
   return (
     <Link
-      to={`/browse/${id}`}
+      to={`/browse/${encodeURIComponent(title)}`}
       style={{
         textDecoration: 'none',
         color: 'inherit',
