@@ -12,7 +12,8 @@ const COLORS = [
 
 const ProductPage = () => {
   const { id } = useParams()
-  const product = products.find((p) => String(p.id) === String(id))
+  
+  const product = products.find((p) => String(p.title) === String(id))
   const [selectedSize, setSelectedSize] = useState('M')
   const [selectedColor, setSelectedColor] = useState(COLORS[0].code)
 
