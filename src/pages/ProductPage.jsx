@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import products from '../../scripts/data/products.json'
 import { useState } from 'react'
 import '../assets/css/ProductPage.css'
+import { useDispatch } from 'react-redux'
 
 const SIZES = ['XS', 'S', 'M', 'L', 'XL']
 const COLORS = [
@@ -12,10 +13,11 @@ const COLORS = [
 
 const ProductPage = () => {
   const { id } = useParams()
-  
+
   const product = products.find((p) => String(p.title) === String(id))
   const [selectedSize, setSelectedSize] = useState('M')
   const [selectedColor, setSelectedColor] = useState(COLORS[0].code)
+  const dispatch = useDispatch()
 
   if (!product)
     return (
@@ -172,6 +174,13 @@ const ProductPage = () => {
                 cursor: 'pointer',
                 borderRadius: 0,
                 marginRight: 8
+              }}
+              onClick={() => {
+                dispatch({
+                  type: 'ADD_TO_CART',
+                  payload: { product, options: { selectedSize, selectedColor } }
+                })
+                alert('Added to cart!')
               }}
             >
               Add to Cart

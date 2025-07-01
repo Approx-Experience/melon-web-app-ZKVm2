@@ -34,7 +34,7 @@ const BestSellersSection = () => {
       {/* Desktop: 4 columns, fixed size */}
       <Row className='g-4 d-none d-lg-flex'>
         {products.map((product) => (
-          <Col key={product.id} lg={3} className='d-flex'>
+          <Col key={product.title} lg={3} className='d-flex'>
             <ProductCard product={product}/>
           </Col>
         ))}
@@ -42,7 +42,7 @@ const BestSellersSection = () => {
       {/* Mobile/tablet: 2 columns, auto size */}
       <Row className='g-4 d-lg-none'>
         {products.map((product) => (
-          <Col key={product.id} xs={6} className='d-flex'>
+          <Col key={product.title} xs={6} className='d-flex'>
             <ProductCard product={product}/>
           </Col>
         ))}
