@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import '../assets/css/MobileNavigationBar.css'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const navLinks = [
   'new arrivals',
@@ -15,10 +16,7 @@ const MobileNavigationBar = () => {
   const [openMenu, setOpenMenu] = useState(false)
   const [openSearch, setOpenSearch] = useState(false)
   const navigate = useNavigate()
-
-  useEffect(() => {
-    console.log(openSearch)
-  }, [openSearch])
+  const cart = useSelector((state) => state.cart)
 
   return (
     <nav className='mobile-navbar'>
@@ -51,7 +49,9 @@ const MobileNavigationBar = () => {
           </button>
           <button className='icon-btn'>
             <img src='/public/cart.svg' alt='cart' />
-            <span className='cart-count'>0</span>
+            <span className='cart-count'>
+              {cart.reduce((sum, item) => sum + item.quantity, 0)}
+            </span>
           </button>
 
           {/* <input
