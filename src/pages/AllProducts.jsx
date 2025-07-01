@@ -53,9 +53,14 @@ const AllProducts = () => {
   }, [])
 
   let filteredProducts = products
-  if (size) filteredProducts = filteredProducts.filter((p) => p.size === size)
+  if (size)
+    filteredProducts = filteredProducts.filter(
+      (p) => Array.isArray(p.size) && p.size.includes(size)
+    )
   if (color)
-    filteredProducts = filteredProducts.filter((p) => p.color === color)
+    filteredProducts = filteredProducts.filter(
+      (p) => Array.isArray(p.color) && p.color.includes(color)
+    )
   if (sort === 'price-asc')
     filteredProducts = [...filteredProducts].sort((a, b) => a.price - b.price)
   if (sort === 'price-desc')
@@ -158,7 +163,7 @@ const AllProducts = () => {
               marginTop: '20px',
               alignItems: 'center',
               flexWrap: 'wrap',
-              justifyContent:'flex-start' ,
+              justifyContent: 'flex-start',
               width: '100%'
             }}
           >
@@ -170,15 +175,125 @@ const AllProducts = () => {
             <SortDropdown
               value={size}
               onChange={setSize}
-              options={sizeOptions.slice(1)} 
+              options={sizeOptions.slice(1)}
             />
             <SortDropdown
               value={color}
               onChange={setColor}
-              options={colorOptions.slice(1)} 
+              options={colorOptions.slice(1)}
             />
-            
           </div>
+
+          {/* Active Filters Block */}
+          {(size || color) && (
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+                marginBottom: 16,
+                marginTop: -16
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: 'Montserrat, sans-serif',
+                  fontWeight: 600,
+                  fontSize: 14,
+                  color: '#000'
+                }}
+              >
+                active filters:
+              </span>
+              {size && (
+                <span
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    background: '#fff',
+                    border: '1px solid #000',
+                    fontFamily: 'Montserrat, sans-serif',
+                    fontWeight: 600,
+                    fontSize: 14,
+                    color: '#000',
+                    padding: '2px 12px',
+                    marginRight: 4,
+                    borderRadius: 0,
+                    marginLeft: 4
+                  }}
+                >
+                  {size}
+                  <button
+                    onClick={() => setSize('')}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: '#000',
+                      fontWeight: 700,
+                      fontSize: 16,
+                      marginLeft: 6,
+                      cursor: 'pointer',
+                      padding: 0,
+                      lineHeight: 1
+                    }}
+                    aria-label='Clear size filter'
+                  >
+                    ×
+                  </button>
+                </span>
+              )}
+              {color && (
+                <span
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    background: '#fff',
+                    border: '1px solid #000',
+                    fontFamily: 'Montserrat, sans-serif',
+                    fontWeight: 600,
+                    fontSize: 14,
+                    color: '#000',
+                    padding: '2px 12px',
+                    marginRight: 4,
+                    borderRadius: 0
+                  }}
+                >
+                  {color}
+                  <button
+                    onClick={() => setColor('')}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: '#000',
+                      fontWeight: 700,
+                      fontSize: 16,
+                      marginLeft: 6,
+                      cursor: 'pointer',
+                      padding: 0,
+                      lineHeight: 1
+                    }}
+                    aria-label='Clear color filter'
+                  >
+                    ×
+                  </button>
+                </span>
+              )}
+            </div>
+          )}
+
+          {/* Product Count */}
+          <div
+            style={{
+              fontFamily: 'Montserrat, sans-serif',
+              fontWeight: 500,
+              fontSize: 14,
+              color: '#000',
+              marginBottom: 12
+            }}
+          >
+            {filteredProducts.length} products
+          </div>
+
           <h1 className='all-products-heading'>
             the hottest threads for staying cool
           </h1>
