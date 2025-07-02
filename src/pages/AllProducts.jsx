@@ -309,8 +309,8 @@ const AllProducts = () => {
             these things are sellin like hotcakes
           </div>
           <div className='melon-product-cards-container'>
-            {filteredProducts.map((product, idx) => (
-              <ProductCard key={product.title + idx} product={product} />
+            {filteredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
             ))}
           </div>
         </main>

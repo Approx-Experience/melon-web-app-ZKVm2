@@ -10,7 +10,10 @@ const reducer = (state = initialState, action) => {
         (item) =>
           item.id === product.id &&
           item.selectedSize === options.selectedSize &&
-          item.selectedColor === options.selectedColor
+          ((item.selectedColor &&
+            options.selectedColor &&
+            item.selectedColor.code === options.selectedColor.code) ||
+            (!item.selectedColor && !options.selectedColor))
       )
       if (idx !== -1) {
         // Increment quantity
@@ -43,13 +46,38 @@ const reducer = (state = initialState, action) => {
             !(
               item.id === productId &&
               item.selectedSize === options.selectedSize &&
-              item.selectedColor === options.selectedColor
+              ((item.selectedColor &&
+                options.selectedColor &&
+                item.selectedColor.code === options.selectedColor.code) ||
+                (!item.selectedColor && !options.selectedColor))
             )
         )
       }
     }
     case 'CLEAR_CART':
       return { ...state, cart: [] }
+    case 'UPDATE_CART_QUANTITY': {
+      const { productId, selectedSize, selectedColor, quantity } =
+        action.payload
+      const idx = state.cart.findIndex(
+        (item) =>
+          item.id === productId &&
+          item.selectedSize === selectedSize &&
+          ((item.selectedColor &&
+            selectedColor &&
+            item.selectedColor.code === selectedColor.code) ||
+            (!item.selectedColor && !selectedColor))
+      )
+      if (idx !== -1) {
+        const updatedCart = [...state.cart]
+        updatedCart[idx] = {
+          ...updatedCart[idx],
+          quantity: Number(quantity)
+        }
+        return { ...state, cart: updatedCart }
+      }
+      return state
+    }
     default:
       return state
   }

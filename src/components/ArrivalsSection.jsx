@@ -1,10 +1,23 @@
 import { Container, Row, Col } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 const arrivals = [
-  { label: 'shirts', img: '/public/shirts.png', link: '#' },
-  { label: 'shorts', img: '/public/shorts.png', link: '#' },
-  { label: 'athleisure', img: '/public/athleisure.png', link: '#' },
-  { label: 'hats', img: '/public/hats.png', link: '#' }
+  {
+    label: 'shirts',
+    img: '/public/shirts.png',
+    link: '/browse?category=shirts'
+  },
+  {
+    label: 'shorts',
+    img: '/public/shorts.png',
+    link: '/browse?category=shorts'
+  },
+  {
+    label: 'athleisure',
+    img: '/public/athleisure.png',
+    link: '/browse?category=athleisure'
+  },
+  { label: 'hats', img: '/public/hats.png', link: '/browse?category=hats' }
 ]
 
 const ArrivalsSection = () => (
@@ -41,8 +54,8 @@ const ArrivalsSection = () => (
         style={{ height: 400.8 }}
       >
         <Col className='col-auto me-3 p-0'>
-          <a
-            href={arrivals[0].link}
+          <Link
+            to={arrivals[0].link}
             className='d-block position-relative'
             style={{ width: 336, height: 400.8 }}
           >
@@ -67,11 +80,11 @@ const ArrivalsSection = () => (
             >
               {arrivals[0].label}
             </div> */}
-          </a>
+          </Link>
         </Col>
         <Col className='col-auto me-3 p-0'>
-          <a
-            href={arrivals[1].link}
+          <Link
+            to={arrivals[1].link}
             className='d-block position-relative'
             style={{ width: 249.6, height: 400.8 }}
           >
@@ -96,14 +109,14 @@ const ArrivalsSection = () => (
             >
               {arrivals[1].label}
             </div> */}
-          </a>
+          </Link>
         </Col>
         <Col
           className='col-auto p-0 d-flex flex-column justify-content-between'
           style={{ width: 249.6 }}
         >
-          <a
-            href={arrivals[3].link}
+          <Link
+            to={arrivals[3].link}
             className='d-block mb-3 position-relative'
             style={{ width: 249.6, height: 187.2 }}
           >
@@ -128,9 +141,9 @@ const ArrivalsSection = () => (
             >
               {arrivals[3].label}
             </div> */}
-          </a>
-          <a
-            href={arrivals[2].link}
+          </Link>
+          <Link
+            to={arrivals[2].link}
             className='d-block position-relative'
             style={{ width: 249.6, height: 187.2 }}
           >
@@ -155,7 +168,7 @@ const ArrivalsSection = () => (
             >
               {arrivals[2].label}
             </div> */}
-          </a>
+          </Link>
         </Col>
       </Row>
     </Container>
@@ -164,7 +177,7 @@ const ArrivalsSection = () => (
       <Row className='gy-3'>
         {arrivals.map((item) => (
           <Col xs={12} key={item.label} className='d-flex flex-column'>
-            <a href={item.link} className='d-block w-100 position-relative'>
+            <Link to={item.link} className='d-block w-100 position-relative'>
               <img
                 src={item.img}
                 alt={item.label}
@@ -181,7 +194,7 @@ const ArrivalsSection = () => (
               >
                 {item.label}
               </div> */}
-            </a>
+            </Link>
           </Col>
         ))}
       </Row>
