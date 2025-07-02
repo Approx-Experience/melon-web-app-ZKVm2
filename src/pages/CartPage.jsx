@@ -1,9 +1,11 @@
 import '../assets/css/CartPage.css'
 import { useSelector } from 'react-redux'
 import CartItem from '../components/CartItem'
+import { useNavigate } from 'react-router-dom'
 
 const CartPage = () => {
   const cart = useSelector((state) => state.cart)
+  const navigate = useNavigate()
 
   const subtotal = cart.reduce(
     (sum, item) => sum + (item.price || 0) * (item.quantity || 1),
@@ -154,6 +156,7 @@ const CartPage = () => {
               textTransform: 'lowercase',
               letterSpacing: 0.2
             }}
+            onClick={() => navigate('/checkout')}
           >
             continue to checkout
           </button>
