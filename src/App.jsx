@@ -11,6 +11,7 @@ import AllProducts from './pages/AllProducts.jsx'
 import ProductPage from './pages/ProductPage.jsx'
 import SignUp from './pages/SignUp.jsx'
 import CartPage from './pages/CartPage.jsx'
+import Checkout from './pages/Checkout.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
       <Route path='browse/:id' element={<ProductPage />} />
       <Route path='sign-up' element={<SignUp />} />
       <Route path='cart' element={<CartPage />} />
+      <Route path='checkout' element={<Checkout />} />
     </Route>
   )
 )
