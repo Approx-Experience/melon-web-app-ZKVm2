@@ -32,11 +32,19 @@ const sizeOptions = [
   { value: 'L', label: 'L' },
   { value: 'XL', label: 'XL' }
 ]
+const allColors = Array.from(
+  new Set(
+    products.flatMap((p) =>
+      Array.isArray(p.color) ? p.color.map((c) => c.name) : []
+    )
+  )
+)
 const colorOptions = [
   { value: '', label: 'Color' },
-  { value: 'navy', label: 'Navy' },
-  { value: 'red', label: 'Red' },
-  { value: 'beige', label: 'Beige' }
+  ...allColors.map((name) => ({
+    value: name,
+    label: name.charAt(0).toUpperCase() + name.slice(1)
+  }))
 ]
 
 const AllProducts = () => {
@@ -59,7 +67,7 @@ const AllProducts = () => {
     )
   if (color)
     filteredProducts = filteredProducts.filter(
-      (p) => Array.isArray(p.color) && p.color.includes(color)
+      (p) => Array.isArray(p.color) && p.color.some((c) => c.name === color)
     )
   if (sort === 'price-asc')
     filteredProducts = [...filteredProducts].sort((a, b) => a.price - b.price)

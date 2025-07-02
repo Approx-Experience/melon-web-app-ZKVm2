@@ -8,7 +8,10 @@
     "subcategory": "jackets",
     "subsubcategory": "denim",
     "size": ["S", "M", "L"],
-    "color": ["navy", "beige"]
+    "color": [
+      { "name": "Navy Blue", "code": "#2B4257" },
+      { "name": "Beige", "code": "#D9B07A" }
+    ]
   },
   {
     "title": "Black Leather Boots",
@@ -19,7 +22,7 @@
     "subcategory": "shoes",
     "subsubcategory": "boots",
     "size": ["36", "37", "38", "39", "40"],
-    "color": ["black"]
+    "color": [{ "name": "Black", "code": "#000000" }]
   },
   {
     "title": "White Linen Shirt",
@@ -30,7 +33,7 @@
     "subcategory": "shirts",
     "subsubcategory": "linen",
     "size": ["M", "L", "XL"],
-    "color": ["white"]
+    "color": [{ "name": "White", "code": "#FFFFFF" }]
   },
   {
     "title": "Pleated Midi Skirt",
@@ -41,7 +44,10 @@
     "subcategory": "skirts",
     "subsubcategory": "midi",
     "size": ["XS", "S", "M"],
-    "color": ["beige", "grey"]
+    "color": [
+      { "name": "Beige", "code": "#D9B07A" },
+      { "name": "Grey", "code": "#888888" }
+    ]
   },
   {
     "title": "Graphic Tee",
@@ -52,7 +58,11 @@
     "subcategory": "shirts",
     "subsubcategory": "graphic",
     "size": ["S", "M", "L", "XL"],
-    "color": ["red", "navy", "white"]
+    "color": [
+      { "name": "Red", "code": "#A44B4B" },
+      { "name": "Navy Blue", "code": "#2B4257" },
+      { "name": "White", "code": "#FFFFFF" }
+    ]
   },
   {
     "title": "Silk Scarf",
@@ -63,7 +73,11 @@
     "subcategory": "scarves",
     "subsubcategory": "silk",
     "size": ["one size"],
-    "color": ["red", "beige", "navy"]
+    "color": [
+      { "name": "Red", "code": "#A44B4B" },
+      { "name": "Beige", "code": "#D9B07A" },
+      { "name": "Navy Blue", "code": "#2B4257" }
+    ]
   },
   {
     "title": "Wool Fedora Hat",
@@ -74,7 +88,10 @@
     "subcategory": "hats",
     "subsubcategory": "fedora",
     "size": ["one size"],
-    "color": ["beige", "navy"]
+    "color": [
+      { "name": "Beige", "code": "#D9B07A" },
+      { "name": "Navy Blue", "code": "#2B4257" }
+    ]
   },
   {
     "title": "Floral Print Dress",
@@ -85,7 +102,10 @@
     "subcategory": "dresses",
     "subsubcategory": "floral",
     "size": ["S", "M", "L"],
-    "color": ["red", "beige"]
+    "color": [
+      { "name": "Red", "code": "#A44B4B" },
+      { "name": "Beige", "code": "#D9B07A" }
+    ]
   },
   {
     "title": "Cashmere Sweater",
@@ -96,7 +116,10 @@
     "subcategory": "sweaters",
     "subsubcategory": "cashmere",
     "size": ["M", "L"],
-    "color": ["beige", "navy"]
+    "color": [
+      { "name": "Beige", "code": "#D9B07A" },
+      { "name": "Navy Blue", "code": "#2B4257" }
+    ]
   },
   {
     "title": "High Waisted Jeans",
@@ -107,6 +130,9 @@
     "subcategory": "pants",
     "subsubcategory": "jeans",
     "size": ["S", "M", "L", "XL"],
-    "color": ["navy", "beige"]
+    "color": [
+      { "name": "Navy Blue", "code": "#2B4257" },
+      { "name": "Beige", "code": "#D9B07A" }
+    ]
   }
 ]

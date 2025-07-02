@@ -5,19 +5,20 @@ import '../assets/css/ProductPage.css'
 import { useDispatch } from 'react-redux'
 
 const SIZES = ['XS', 'S', 'M', 'L', 'XL']
-const COLORS = [
-  { code: '#2B4257', name: 'navy' },
-  { code: '#A44B4B', name: 'red' },
-  { code: '#D9B07A', name: 'beige' }
-]
+// const COLORS = [
+//   { code: '#2B4257', name: 'navy' },
+//   { code: '#A44B4B', name: 'red' },
+//   { code: '#D9B07A', name: 'beige' }
+// ]
 
 const ProductPage = () => {
   const { id } = useParams()
 
   const product = products.find((p) => String(p.title) === String(id))
   const [selectedSize, setSelectedSize] = useState('M')
-  const [selectedColor, setSelectedColor] = useState(COLORS[0].code)
+  const [selectedColor, setSelectedColor] = useState(product.color[0])
   const dispatch = useDispatch()
+  const [added, setAdded] = useState(false)
 
   if (!product)
     return (
@@ -114,7 +115,7 @@ const ProductPage = () => {
             available colors:
           </div>
           <div style={{ display: 'flex', gap: 16, marginBottom: 18 }}>
-            {COLORS.map((color) => (
+            {product.color.map((color) => (
               <button
                 key={color.code}
                 style={{
@@ -122,7 +123,7 @@ const ProductPage = () => {
                   height: 28,
                   background: color.code,
                   border:
-                    selectedColor === color.code
+                    selectedColor.code === color.code
                       ? '2px solid #000'
                       : '1px solid #888',
                   outline: 'none',
@@ -132,7 +133,8 @@ const ProductPage = () => {
                   borderRadius: 0
                 }}
                 aria-label={color.name}
-                onClick={() => setSelectedColor(color.code)}
+                title={color.name}
+                onClick={() => setSelectedColor(color)}
               />
             ))}
           </div>
@@ -164,26 +166,29 @@ const ProductPage = () => {
           <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
             <button
               style={{
-                background: '#36E15C',
+                background: added ? '#EBF2ED' : '#36E15C',
                 color: '#000',
                 fontWeight: 700,
                 fontFamily: 'Montserrat, sans-serif',
                 fontSize: 16,
                 border: 'none',
                 padding: '12px 32px',
-                cursor: 'pointer',
+                cursor: added ? 'default' : 'pointer',
                 borderRadius: 0,
                 marginRight: 8
               }}
               onClick={() => {
+                if (added) return
                 dispatch({
                   type: 'ADD_TO_CART',
                   payload: { product, options: { selectedSize, selectedColor } }
                 })
-                alert('Added to cart!')
+                setAdded(true)
+                setTimeout(() => setAdded(false), 2000)
               }}
+              disabled={added}
             >
-              Add to Cart
+              {added ? 'Added!' : 'Add to Cart'}
             </button>
             <button
               style={{
