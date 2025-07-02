@@ -211,13 +211,23 @@ const MelonNavbar = () => {
                   className='d-flex align-items-center position-relative'
                   style={{ marginRight: 12 }}
                 >
-                  <img src='/public/cart.svg' alt='Cart' style={iconStyle} />
-                  <span
-                    className='fw-bold text-dark ms-1'
-                    style={{ fontSize: 16 }}
+                  <Link
+                    to='/cart'
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      textDecoration: 'none',
+                      color: 'inherit'
+                    }}
                   >
-                    {cart.reduce((sum, item) => sum + item.quantity, 0)}
-                  </span>
+                    <img src='/public/cart.svg' alt='Cart' style={iconStyle} />
+                    <span
+                      className='fw-bold text-dark ms-1'
+                      style={{ fontSize: 16 }}
+                    >
+                      {cart.reduce((sum, item) => sum + item.quantity, 0)}
+                    </span>
+                  </Link>
                 </div>
               </div>
             </div>
