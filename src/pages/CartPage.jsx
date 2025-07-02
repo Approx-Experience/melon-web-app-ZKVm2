@@ -1,4 +1,5 @@
-import { useSelector, } from 'react-redux'
+import '../assets/css/CartPage.css'
+import { useSelector } from 'react-redux'
 import CartItem from '../components/CartItem'
 
 const CartPage = () => {
@@ -21,6 +22,7 @@ const CartPage = () => {
       }}
     >
       <div
+        className='cart-main-flex'
         style={{
           maxWidth: 1200,
           margin: '0 auto',
@@ -42,11 +44,21 @@ const CartPage = () => {
             Cart
           </h1>
           {cart.map((item) => (
-            <CartItem key={item.title} item={item}/>
+            <CartItem
+              key={
+                item.id +
+                '-' +
+                item.selectedSize +
+                '-' +
+                (item.selectedColor?.code || '')
+              }
+              item={item}
+            />
           ))}
         </div>
         {/* Summary Card */}
         <div
+          className='cart-summary-card'
           style={{
             flex: 1,
             background: '#fff',

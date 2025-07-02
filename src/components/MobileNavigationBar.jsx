@@ -21,7 +21,11 @@ const MobileNavigationBar = () => {
   return (
     <nav className='mobile-navbar'>
       <div className='mobile-navbar-top'>
-        <div className='mobile-navbar-logo-content'>
+        <div
+          className='mobile-navbar-logo-content'
+          style={{ cursor: 'pointer' }}
+          onClick={() => navigate('/')}
+        >
           <span>melon</span>
           <img
             src='/public/melon-icon.svg'
@@ -44,10 +48,10 @@ const MobileNavigationBar = () => {
             <img src='/public/account.svg' alt='account' />
           </button>
 
-          <button className='icon-btn'>
+          <button className='icon-btn' onClick={() => navigate('/favorites')}>
             <img src='/public/favorite.svg' alt='favorites' />
           </button>
-          <button className='icon-btn'>
+          <button className='icon-btn' onClick={() => navigate('/cart')}>
             <img src='/public/cart.svg' alt='cart' />
             <span className='cart-count'>
               {cart.reduce((sum, item) => sum + item.quantity, 0)}
@@ -96,7 +100,18 @@ const MobileNavigationBar = () => {
       {openMenu && (
         <div className='mobile-navbar-menu'>
           {navLinks.map((link) => (
-            <div className='mobile-navbar-link' key={link}>
+            <div
+              className='mobile-navbar-link'
+              key={link}
+              onClick={() =>
+                navigate(
+                  `/browse?category=${encodeURIComponent(
+                    link.replace(/ /g, '-')
+                  )}`
+                )
+              }
+              style={{ cursor: 'pointer' }}
+            >
               {link}
               <img
                 src='/public/chevron_forward.svg'

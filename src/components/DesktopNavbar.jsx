@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 const navLinks = [
-  { label: 'new arrivals', href: '#' },
-  { label: 'men', href: '#' },
-  { label: 'women', href: '#' },
-  { label: 'accessories', href: '#' },
-  { label: 'shoes', href: '#' },
-  { label: 'sale', href: '#' }
+  { label: 'new arrivals', href: '/browse?category=new-arrivals' },
+  { label: 'men', href: '/browse?category=men' },
+  { label: 'women', href: '/browse?category=women' },
+  { label: 'accessories', href: '/browse?category=accessories' },
+  { label: 'shoes', href: '/browse?category=shoes' },
+  { label: 'sale', href: '/browse?category=sale' }
 ]
 
 const iconStyle = {
@@ -106,8 +106,8 @@ const MelonNavbar = () => {
             style={{ height: 80 }}
           >
             {/* Лого */}
-            <a
-              href='/'
+            <Link
+              to='/'
               className='d-flex align-items-center text-decoration-none'
               style={{ minWidth: 370 }}
             >
@@ -128,7 +128,7 @@ const MelonNavbar = () => {
                 alt='Melon Logo'
                 style={{ width: 36, height: 36 }}
               />
-            </a>
+            </Link>
             {/* Пошук по центру (absolute) */}
             <div
               style={{
@@ -236,14 +236,14 @@ const MelonNavbar = () => {
         {/* Нижній ряд — навігація */}
         <div className='d-flex justify-content-center align-items-center py-2 gap-4'>
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.label}
-              href={link.href}
+              to={link.href}
               className='fw-bold text-dark text-decoration-none text-lowercase'
               style={{ fontSize: 18, letterSpacing: 0.2 }}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
       </Container>
