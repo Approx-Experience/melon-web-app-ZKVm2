@@ -12,6 +12,7 @@ import ProductPage from './pages/ProductPage.jsx'
 import SignUp from './pages/SignUp.jsx'
 import CartPage from './pages/CartPage.jsx'
 import Checkout from './pages/Checkout.jsx'
+import AddProduct from './pages/AddProduct.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
       <Route path='sign-up' element={<SignUp />} />
       <Route path='cart' element={<CartPage />} />
       <Route path='checkout' element={<Checkout />} />
+      <Route path='admin/add-product' element={<AddProduct />} />
     </Route>
   )
 )

@@ -1,7 +1,7 @@
 import { Container } from 'react-bootstrap'
 import { useState } from 'react'
 import { FaSun, FaMoon } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 const navLinks = [
@@ -82,8 +82,99 @@ const ThemeToggle = () => {
   )
 }
 
+function AccountMenu() {
+  const [open, setOpen] = useState(false)
+  const navigate = useNavigate()
+  let user = null
+  user = JSON.parse(localStorage.getItem('user') || 'null')
+  const isLogged = !!user
+  if (!isLogged) {
+    return (
+      <button
+        onClick={() => navigate('/sign-up')}
+        style={{
+          background: 'none',
+          border: 'none',
+          cursor: 'pointer',
+          fontWeight: 700,
+          color: '#000',
+          display: 'flex',
+          alignItems: 'center',
+          padding: 0
+        }}
+      >
+        <img
+          src='/public/account.svg'
+          alt='Account'
+          style={{ width: 28, height: 28, marginRight: 6 }}
+        />
+        account
+      </button>
+    )
+  }
+  return (
+    <div style={{ position: 'relative', display: 'inline-block' }}>
+      <button
+        onClick={() => setOpen((o) => !o)}
+        style={{
+          background: 'none',
+          border: 'none',
+          cursor: 'pointer',
+          fontWeight: 700,
+          color: '#000',
+          display: 'flex',
+          alignItems: 'center',
+          padding: 0
+        }}
+      >
+        <img
+          src='/public/account.svg'
+          alt='Account'
+          style={{ width: 28, height: 28, marginRight: 6 }}
+        />
+        account
+      </button>
+      {open && (
+        <div
+          style={{
+            position: 'absolute',
+            top: 36,
+            right: 0,
+            background: '#fff',
+            border: '1px solid #eee',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+            zIndex: 100,
+            minWidth: 120,
+            padding: 8
+          }}
+        >
+          <div style={{ fontSize: 13, marginBottom: 8 }}>{user.email}</div>
+          <button
+            onClick={() => {
+              localStorage.removeItem('user')
+              window.location.reload()
+            }}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: '#E13636',
+              fontWeight: 700,
+              cursor: 'pointer'
+            }}
+          >
+            Logout
+          </button>
+        </div>
+      )}
+    </div>
+  )
+}
+
 const MelonNavbar = () => {
   const cart = useSelector((state) => state.cart)
+  let isAdmin = false
+  const user2 = JSON.parse(localStorage.getItem('user') || 'null')
+  isAdmin = user2?.isAdmin
   return (
     <nav
       className='desktop-navbar'
@@ -174,28 +265,7 @@ const MelonNavbar = () => {
               style={{ minWidth: 340, gap: 24 }}
             >
               <div className='d-flex align-items-center' style={{ gap: 18 }}>
-                <Link
-                  to='/sign-up'
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    textDecoration: 'none',
-                    color: 'inherit',
-                    gap: 4
-                  }}
-                >
-                  <img
-                    src='/public/account.svg'
-                    alt='Account'
-                    style={iconStyle}
-                  />
-                  <span
-                    className='fw-bold text-dark'
-                    style={{ fontSize: 16, marginRight: 12 }}
-                  >
-                    account
-                  </span>
-                </Link>
+                <AccountMenu />
                 <img
                   src='/public/favorite.svg'
                   alt='Favorites'
@@ -229,6 +299,27 @@ const MelonNavbar = () => {
                     </span>
                   </Link>
                 </div>
+                {isAdmin && (
+                  <Link
+                    to='/admin/add-product'
+                    style={{
+                      background: '#36E15C',
+                      color: '#000',
+                      fontWeight: 700,
+                      fontFamily: 'Montserrat, sans-serif',
+                      fontSize: 15,
+                      border: 'none',
+                      padding: '8px 18px',
+                      cursor: 'pointer',
+                      borderRadius: 0,
+                      marginLeft: 8,
+                      textDecoration: 'none',
+                      display: 'inline-block'
+                    }}
+                  >
+                    Add Product
+                  </Link>
+                )}
               </div>
             </div>
           </div>
