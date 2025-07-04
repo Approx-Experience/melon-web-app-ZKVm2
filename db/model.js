@@ -16,20 +16,20 @@ User.init(
     userId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true,
+      autoIncrement: true
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: true
     },
     password: {
-      type: DataTypes.STRING,
-    },
+      type: DataTypes.STRING
+    }
   },
   {
     modelName: 'user',
-    sequelize: db,
+    sequelize: db
   }
 )
 
@@ -45,24 +45,40 @@ Product.init(
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
+      field: 'product_id'
     },
     title: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: true
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
     image: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
     price: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.FLOAT
     },
+    sizes: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: true
+    },
+    colors: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: true
+    },
+    category: {
+      type: DataTypes.STRING,
+      allowNull: true
+    }
   },
   {
     modelName: 'product',
     sequelize: db,
+    underscored: true
   }
 )
+
+await Product.sync()
