@@ -3,6 +3,7 @@ import ProductCard from '../components/ProductCard'
 import products from '../../scripts/data/products.json'
 import '../assets/css/AllProducts.css'
 import SortDropdown from '../components/SortDropdown'
+import Pagination from '../components/Pagination'
 
 const navCategories = [
   { label: 'shirts' },
@@ -47,12 +48,15 @@ const colorOptions = [
   }))
 ]
 
+const PRODUCTS_PER_PAGE = 5
+
 const AllProducts = () => {
   const [showFilters, setShowFilters] = useState(false)
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 900)
   const [sort, setSort] = useState('')
   const [size, setSize] = useState('')
   const [color, setColor] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 900)
@@ -75,6 +79,19 @@ const AllProducts = () => {
     filteredProducts = [...filteredProducts].sort((a, b) => b.price - a.price)
   if (sort === 'newest')
     filteredProducts = [...filteredProducts].sort((a, b) => b.id - a.id)
+
+  // PAGINATION
+  const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE)
+  const paginatedProducts = filteredProducts.slice(
+    (currentPage - 1) * PRODUCTS_PER_PAGE,
+    currentPage * PRODUCTS_PER_PAGE
+  )
+
+  useEffect(() => {
+    // Якщо після фільтрації поточна сторінка більша за кількість сторінок, скидаємо на 1
+    if (currentPage > totalPages) setCurrentPage(1)
+    // eslint-disable-next-line
+  }, [filteredProducts.length])
 
   return (
     <div className='all-products-bg'>
@@ -309,10 +326,18 @@ const AllProducts = () => {
             these things are sellin like hotcakes
           </div>
           <div className='melon-product-cards-container'>
-            {filteredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+            {paginatedProducts.map((product) => (
+              <ProductCard
+                key={product.id || product.title}
+                product={product}
+              />
             ))}
           </div>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
         </main>
       </div>
     </div>
